@@ -40,11 +40,15 @@ class Room{
     display(){
   
       let s = 1.1666;
-      beginShape(); //BACKFACE
-        for(let i = 4; i < 8; i++){
-          vertex(this.loc[i].x,this.loc[i].y,this.loc[i].z,this.vectors[i].x*s+width/2,this.vectors[i].y*s+height/2)
-        }
-      endShape(CLOSE); 
+      push();
+      translate(0,0,depth);
+      box(width,height,0);
+      pop();
+    //   beginShape(); //BACKFACE
+    //     for(let i = 4; i < 8; i++){
+    //       vertex(this.loc[i].x,this.loc[i].y,this.loc[i].z,this.vectors[i].x*s+width/2,this.vectors[i].y*s+height/2)
+    //     }
+    //   endShape(CLOSE); 
   
       beginShape(); //LEFTFACE
         for(let i = 4; i < 6; i++){
@@ -82,7 +86,14 @@ class Room{
       vertex(this.loc[0].x,this.loc[0].y,this.loc[0].z,this.vectors[0].x*s+width/2,0)
       endShape(CLOSE); 
       
-      
+      beginShape(TRIANGLES); //TOPFACE
+  
+      for(let i =5; i < 7; i++){
+          vertex(this.loc[i].x,this.loc[i].y,this.loc[i].z,this.vectors[i].x*s+width/2,height)
+        }
+      vertex(this.loc[3].x,this.loc[3].y,this.loc[3].z,this.vectors[3].x*s+width/2,0)
+      vertex(this.loc[0].x,this.loc[0].y,this.loc[0].z,this.vectors[0].x*s+width/2,0)
+      endShape(CLOSE); 
       
       
     }
