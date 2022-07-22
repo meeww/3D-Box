@@ -13,7 +13,8 @@ offsetGyroY = 0;
 let wallShader;
 let wallShaderTexture;
 let objShader;
-let test;
+
+let metalTextures = [];
 
 function setupShaders(){
   wallShader.setUniform('u_resolution', [width, height,depth]);
@@ -23,6 +24,12 @@ function preload(){
   wallShader= loadShader('shaders/wall.vert','shaders/wall.frag');
   objShader= loadShader('shaders/obj.vert','shaders/obj.frag');
   test = loadImage("soapy.png")
+  for(let i = 0; i < 4; i++){
+    metalTextures[i] = [];
+    metalTextures[i][0] = loadImage("textures/metal"+i+"/albedo.png")
+    metalTextures[i][1] = loadImage("textures/metal"+i+"/roughness.png")
+    metalTextures[i][2] = loadImage("textures/metal"+i+"/normal.png")
+  }
 }
 function setup() {
   pixelDensity(1);
@@ -61,7 +68,7 @@ function draw() {
 
   wallShaderTexture.rect(-width/2,-height/2,width,height);
   push();
-  texture(test);
+  texture(metalTextures[0][0]);
   
 
   room.update();
