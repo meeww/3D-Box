@@ -13,7 +13,7 @@ offsetGyroY = 0;
 let wallShader;
 let wallShaderTexture;
 let objShader;
-
+let test;
 let metalTextures = [];
 
 function setupShaders(){
@@ -23,7 +23,7 @@ function setupShaders(){
 function preload(){
   wallShader= loadShader('shaders/wall.vert','shaders/wall.frag');
   objShader= loadShader('shaders/obj.vert','shaders/obj.frag');
-  test = loadImage("soapy.png")
+  test = loadImage("textures/metal0/albedo.png")
   for(let i = 0; i < 4; i++){
     metalTextures[i] = [];
     metalTextures[i][0] = loadImage("textures/metal"+i+"/albedo.png")
